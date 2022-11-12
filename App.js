@@ -40,7 +40,6 @@ export default function App() {
                             name="RegistrationWithPhone"
                             component={RegistrationWithPhone}
                         />
-
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>

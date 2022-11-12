@@ -5,7 +5,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default RegistrationButton = ({IconName, InputText, onPressButton}) => {
     return (
-        <TouchableOpacity style={styles.registerButtonContainer} onPress={onPressButton}>
+        <TouchableOpacity
+            style={styles.registerButtonContainer}
+            onPress={onPressButton}
+        >
             <View style={styles.iconWrapper}>
                 <Ionicons name={IconName} size={24} color="white" />
             </View>

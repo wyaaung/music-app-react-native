@@ -1,10 +1,5 @@
 import React from "react";
-import {
-    View,
-    SafeAreaView,
-    TouchableOpacity,
-    Text,
-} from "react-native";
+import {View, SafeAreaView, TouchableOpacity, Text} from "react-native";
 import EStyleSheet from "react-native-extended-stylesheet";
 import {verticalScale, windowHeight, operatingSystem} from "../utils/utils";
 import RegistrationButton from "../components/RegistrationButton";
@@ -12,7 +7,7 @@ import RegistrationButton from "../components/RegistrationButton";
 const InitialRegistration = ({navigation}) => {
     const onPressPhoneLogin = () => {
         navigation.navigate("RegistrationWithPhone");
-    }
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -21,7 +16,6 @@ const InitialRegistration = ({navigation}) => {
             ></View>
 
             <View style={styles.buttonsWrapper}>
-
                 {operatingSystem === "ios" ? (
                     <RegistrationButton
                         InputText="Connect with Apple"
@@ -58,7 +52,6 @@ const InitialRegistration = ({navigation}) => {
                         </Text>
                     </View>
                 </TouchableOpacity>
-
             </View>
         </SafeAreaView>
     );
