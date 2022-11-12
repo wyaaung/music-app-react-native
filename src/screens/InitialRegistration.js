@@ -4,14 +4,16 @@ import {
     SafeAreaView,
     TouchableOpacity,
     Text,
-    Platform,
 } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import EStyleSheet from "react-native-extended-stylesheet";
-import {verticalScale} from "../utils/utils";
+import {verticalScale, windowHeight, operatingSystem} from "../utils/utils";
 import RegistrationButton from "../components/RegistrationButton";
 
 const InitialRegistration = ({navigation}) => {
+    const onPressPhoneLogin = () => {
+        navigation.navigate("RegistrationWithPhone");
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View
@@ -20,9 +22,9 @@ const InitialRegistration = ({navigation}) => {
 
             <View style={styles.buttonsWrapper}>
 
-                {Platform.OS === "ios" ? (
+                {operatingSystem === "ios" ? (
                     <RegistrationButton
-                        InputText="Continue with Apple"
+                        InputText="Connect with Apple"
                         IconName="logo-apple"
                     />
                 ) : (
@@ -30,18 +32,19 @@ const InitialRegistration = ({navigation}) => {
                 )}
 
                 <RegistrationButton
-                    InputText="Continue with Facebook"
+                    InputText="Connect with Facebook"
                     IconName="ios-logo-facebook"
                 />
 
                 <RegistrationButton
-                    InputText="Continue with Google"
+                    InputText="Connect with Google"
                     IconName="ios-logo-google"
                 />
 
                 <RegistrationButton
-                    InputText="Continue with Phone Number"
+                    InputText="Connect with Phone Number"
                     IconName="ios-phone-portrait"
+                    onPressButton={onPressPhoneLogin}
                 />
 
                 <TouchableOpacity style={styles.loginButtonContainer}>
@@ -71,7 +74,7 @@ const styles = EStyleSheet.create({
     },
     buttonsWrapper: {
         flex: 1,
-        paddingHorizontal: 20,
+        paddingHorizontal: windowHeight * 0.025,
         width: "100%",
         alignItems: "center",
         justifyContent: "flex-end",

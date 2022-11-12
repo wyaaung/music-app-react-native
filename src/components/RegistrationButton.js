@@ -3,9 +3,9 @@ import EStyleSheet from "react-native-extended-stylesheet";
 import {View, TouchableOpacity, Text} from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-export default RegistrationButton = ({IconName, InputText}) => {
+export default RegistrationButton = ({IconName, InputText, onPressButton}) => {
     return (
-        <TouchableOpacity style={styles.registerButtonContainer}>
+        <TouchableOpacity style={styles.registerButtonContainer} onPress={onPressButton}>
             <View style={styles.iconWrapper}>
                 <Ionicons name={IconName} size={24} color="white" />
             </View>
@@ -38,7 +38,7 @@ const styles = EStyleSheet.create({
     iconWrapper: {
         position: "absolute",
         top: 0,
-        left: 15,
+        left: 20,
         right: 0,
         bottom: 0,
         justifyContent: "center",

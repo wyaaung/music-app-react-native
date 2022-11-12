@@ -4,6 +4,7 @@ import EStyleSheet from "react-native-extended-stylesheet";
 import {StyleSheet, View, StatusBar, Dimensions} from "react-native";
 
 import InitialRegistration from "./src/screens/InitialRegistration";
+import RegistrationWithPhone from "./src/screens/RegistrationWithPhone";
 
 EStyleSheet.build({
     $rem:
@@ -34,6 +35,12 @@ export default function App() {
                             name="InitialRegistration"
                             component={InitialRegistration}
                         />
+
+                        <Stack.Screen
+                            name="RegistrationWithPhone"
+                            component={RegistrationWithPhone}
+                        />
+
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>
