@@ -1,20 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {NavigationContainer} from "@react-navigation/native";
+import EStyleSheet from "react-native-extended-stylesheet";
+import {StyleSheet, View, StatusBar, Dimensions} from "react-native";
+
+import InitialRegistration from "./src/screens/InitialRegistration";
+
+EStyleSheet.build({
+    $rem:
+        Dimensions.get("window").width > 500
+            ? 20
+            : Dimensions.get("window").width < 300
+            ? 12
+            : 16,
+});
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <>
+            <StatusBar backgroundColor={"black"} barStyle="light-content" />
+
+            <View style={styles.container}>
+                <NavigationContainer>
+                    <Stack.Navigator
+                        initialRouteName="InitialRegistration"
+                        screenOptions={{
+                            animation: "slide_from_right",
+                            headerShown: false,
+                        }}
+                    >
+                        <Stack.Screen
+                            name="InitialRegistration"
+                            component={InitialRegistration}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </View>
+        </>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+    },
 });
