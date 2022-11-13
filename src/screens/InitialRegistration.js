@@ -57,8 +57,6 @@ const InitialRegistration = ({navigation}) => {
     );
 };
 
-export default InitialRegistration;
-
 const styles = EStyleSheet.create({
     container: {
         flex: 1,
@@ -84,3 +82,5 @@ const styles = EStyleSheet.create({
         fontFamily: "Arial",
     },
 });
+
+export default InitialRegistration;

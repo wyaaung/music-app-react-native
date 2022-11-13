@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useReducer} from "react";
 import {
     View,
     SafeAreaView,
@@ -8,10 +8,41 @@ import {
 } from "react-native";
 import EStyleSheet from "react-native-extended-stylesheet";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import {verticalScale} from "../utils/utils";
 import {FontSize} from "../constants/constants";
+import NextButton from "../components/NextButton";
+import {verticalScale} from "../utils/utils";
+
+const reducer = (state, action) => {
+    const {type, payload} = action;
+
+    if (state.phoneNumber.length > 0 && state.disableNextButton === true) {
+        return {...state, [type]: payload, disableNextButton: false};
+    } else if (
+        state.phoneNumber.length === 0 &&
+        state.disableNextButton === false
+    ) {
+        return {...state, [type]: payload, disableNextButton: true};
+    }
+
+    return {...state, [type]: payload};
+};
 
 const RegistrationWithPhone = ({navigation}) => {
+    const initialState = {
+        phoneNumber: "",
+        focusInput: false,
+        disableNextButton: true,
+    };
+
+    const onPressNextButton = () => {
+        navigation.navigate("InitialRegistration");
+        console.log(state);
+    };
+
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    const {phoneNumber, focusInput, disableNextButton} = state;
+
     return (
         <SafeAreaView style={styles.container}>
             <View>
@@ -38,28 +69,32 @@ const RegistrationWithPhone = ({navigation}) => {
                         maxFontSizeMultiplier={1.2}
                         style={styles.phoneNumberInputStyle}
                         maxLength={16}
-                        placeholder="09xxxxxxxxx"
+                        placeholder="07xxxxxxxxx"
                         placeholderTextColor="#92929b"
                         keyboardType="phone-pad"
-                        // value={phoneNumber}
+                        value={phoneNumber}
                         returnKeyType="done"
-                        // onChangeText={onSetPhone}
+                        onChangeText={(number) =>
+                            dispatch({type: "phoneNumber", payload: number})
+                        }
                         secureTextEntry={false}
-                        // onFocus={onChangeFocus}
-                        // onBlur={onChangeBlur}
-                        // autoFocus={focusInput}
+                        onFocus={() =>
+                            dispatch({type: "focusInput", payload: true})
+                        }
+                        onBlur={() =>
+                            dispatch({type: "focusInput", payload: false})
+                        }
+                        autoFocus={focusInput}
                     />
                 </View>
             </View>
 
             <View style={styles.nextButtonWrapper}>
-                <TouchableOpacity
-                    style={{width: "100%", paddingHorizontal: 15}}
-                >
-                    <View style={styles.nextButton}>
-                        <Text style={styles.nextButtonText}>Next</Text>
-                    </View>
-                </TouchableOpacity>
+                <NextButton
+                    InputText="Next"
+                    disableStatus={disableNextButton}
+                    onPressButton={onPressNextButton}
+                />
             </View>
         </SafeAreaView>
     );
@@ -115,19 +150,5 @@ const styles = EStyleSheet.create({
         marginBottom: verticalScale(50),
         justifyContent: "flex-end",
         alignItems: "center",
-    },
-    nextButton: {
-        borderRadius: "0.313rem",
-        width: "100%",
-        minHeight: "3.5rem",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#f3f3ff",
-    },
-    nextButtonText: {
-        color: "#000",
-        fontSize: FontSize.buttonText,
-        letterSpacing: -0.5,
-        fontFamily: "Arial",
     },
 });

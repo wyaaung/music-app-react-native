@@ -5,3 +5,8 @@ export const FontSize = {
     secondaryText: "0.813rem",
     buttonText: "1.25rem",
 };
+
+export const Colors = {
+    enabledNextButtonColor: "#f3f3ff",
+    disabledNextButtonColor: "#1d1d21",
+};
