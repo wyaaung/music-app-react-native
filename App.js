@@ -5,6 +5,7 @@ import {StyleSheet, View, StatusBar, Dimensions} from "react-native";
 
 import InitialRegistration from "./src/screens/InitialRegistration";
 import RegistrationWithPhone from "./src/screens/RegistrationWithPhone";
+import InputOTP from "./src/screens/shared/InputOTP";
 
 EStyleSheet.build({
     $rem:
@@ -40,6 +41,8 @@ export default function App() {
                             name="RegistrationWithPhone"
                             component={RegistrationWithPhone}
                         />
+
+                        <Stack.Screen name="InputOTP" component={InputOTP} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </View>

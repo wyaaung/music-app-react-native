@@ -35,8 +35,7 @@ const RegistrationWithPhone = ({navigation}) => {
     };
 
     const onPressNextButton = () => {
-        navigation.navigate("InitialRegistration");
-        console.log(state);
+        navigation.navigate("InputOTP");
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);

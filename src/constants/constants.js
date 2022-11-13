@@ -3,10 +3,10 @@ export const FontSize = {
     secondaryHeaderRegistration: "1.563rem",
     primaryText: "0.938rem",
     secondaryText: "0.813rem",
-    buttonText: "1.25rem",
+    buttonText: "1.30rem",
 };
 
 export const Colors = {
-    enabledNextButtonColor: "#f3f3ff",
-    disabledNextButtonColor: "#1d1d21",
+    whiteColor: "#f3f3ff",
+    greyColor: "#1d1d21",
 };

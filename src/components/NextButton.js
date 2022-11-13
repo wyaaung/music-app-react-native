@@ -14,8 +14,8 @@ export default NextButton = ({onPressButton, disableStatus, InputText}) => {
                 style={{
                     ...styles.nextButtonStyle,
                     backgroundColor: !disableStatus
-                        ? Colors.enabledNextButtonColor
-                        : Colors.disabledNextButtonColor,
+                        ? Colors.whiteColor
+                        : Colors.greyColor,
                 }}
             >
                 <Text
